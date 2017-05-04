@@ -11,7 +11,7 @@ dependencies:
 
 test:
   override:
-    - travis_wait docker build -t kaczmarj/ants:$ANTS_VERSION
+    - docker build -t kaczmarj/ants:$ANTS_VERSION
       --build-arg ants_version=$ANTS_VERSION
       --build-arg git_hash=$GIT_HASH --force-rm Dockerfile/
 
