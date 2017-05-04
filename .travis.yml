@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+env:
+  global:
+    secure: "Lt6manmxHOMSDBqmMUJnHurw7uquGW0qxfgWx6XBbP3+bJkKVM4NT2UDGqSufcTZcWslAEaDckS/a357t2+nTTY9pU9tnH3+FbdeeV42I4dyDywxvX6Xenyezot7Ge+uNgcDRTkRvDeLPELM8GdU9nZcBAQRxSqHoSBwiNUj6bWEzcJdtpOM09Y1BHaMkpQZnjI2RwRklXrkK/dqL55oyLa6dgszirPxSLq9rgnSK5RPq2kk6R03pGNf73/Vvak+rMsor+Pi/P2SDVHjKkHIvOSRN0cMt7DGNVdkEjWVa8XDOlcI2fhVFswWqdmajd3PAamFXXo1fWXOhKfqtH1HuzgqjeeT5bq5J1h4J5qCNulMuOIiFH42c9Q2myTgexdYzY4Aw99d4QNdnFgk633JLMY2CPJ5B/Uf+zT8jZUqDGk8sunbTiQzhmXZaYJCtqVNdXWD78eR9Fq8xE0rjnBru6uRGDyCTyYSUwISNUVpR2pFrlPzly3Ul4rpK7cAJ3dCuGx65giM9NMFkk5Ebb/T5KxXhhDAP0GI5RX6BV2B8zjwJcUlfjvj6pngzTuZuY9uMVlt8TB1l2xkLC1ME1NDbPmcD862jmZw5OjSbU0ZF7wcePjULcbBAG+Nsr4ClDelEgMCUZGGMl5rsTK2r7JT9G9YVLtULZ9QGWRp6qBvXrc="
+  matrix:
+    - ANTS_VERSION=20170504 GIT_HASH=a434a9ea61e2354d6024465add1ce360ed270642
+    - ANTS_VERSION=2.1.0 GIT_HASH=78931aa6c4943af25e0ee0644ac611d27127a01e
+    # - ANTS_VERSION=2.0.3 GIT_HASH=c9965390c1a302dfa9e63f6ca3cb88f68aab329f
+    # - ANTS_VERSION=2.0.2 GIT_HASH=7b83036c987e481b2a04490b1554196cb2fc0dab
+    # - ANTS_VERSION=2.0.1 GIT_HASH=dd23c394df9292bae4c5a4ece3023a7571791b7d
+    - ANTS_VERSION=2.0.0 GIT_HASH=7ae1107c102f7c6bcffa4df0355b90c323fcde92
+before_install:
+  - travis_retry sudo apt-get update -qq && sudo apt-get install -yq docker-engine
+script:
+  - travis_wait docker build -t kaczmarj/ants:$ants_version \
+    --build-arg ants_version=$ANTS_VERSION \
+    --build-arg git_hash=$GIT_HASH --force-rm Dockerfile/
+after_success:
+  - docker login -u=kaczmarj -p=$PASSWORD
+  - docker push kaczmarj/ants:$ANTS_VERSION
