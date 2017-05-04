@@ -38,7 +38,7 @@ RUN if [ -z "$ants_version" ] || [ -z "$git_hash" ]; then \
     && git clone git://github.com/stnava/ANTs.git \
     && cd ANTs \
     && git checkout $git_hash \
-    && mkdir build && cd build && cmake .. && make -j 2 \
+    && mkdir build && cd build && cmake .. && make \
     && mkdir -p /opt/ants \
     && cp bin/* /opt/ants && cp ../Scripts/* /opt/ants \
     && cd /tmp && rm -rf ANTs
