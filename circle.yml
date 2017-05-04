@@ -4,8 +4,6 @@ machine:
 
 dependencies:
   pre:
-    # Update Docker engine.
-    - sudo apt-get update -qq && sudo apt-get install -yq docker-engine
     # Install circleci-matrix
     - mkdir -p ~/.local/bin
     - curl -fsSL https://git.io/v2Ifs -o ~/.local/bin/circleci-matrix
