@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker build --build-arg ants_version=$ants_version --build-arg git_hash=$git_hash -t kaczmarj/ants:$ants_version .
+docker build --build-arg ants_version=$ants_version --build-arg git_hash=$git_hash .
