@@ -14,8 +14,8 @@ env:
 before_install:
   - travis_retry sudo apt-get update -qq && sudo apt-get install -yq docker-engine
 script:
-  - travis_wait docker build -t kaczmarj/ants:$ants_version \
-    --build-arg ants_version=$ANTS_VERSION \
+  - travis_wait docker build -t kaczmarj/ants:$ANTS_VERSION
+    --build-arg ants_version=$ANTS_VERSION
     --build-arg git_hash=$GIT_HASH --force-rm Dockerfile/
 after_success:
   - docker login -u=kaczmarj -p=$PASSWORD
