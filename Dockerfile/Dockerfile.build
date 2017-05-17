@@ -27,7 +27,7 @@ RUN if [ -z "$ants_version" ] || [ -z "$ants_git_hash" ]; then \
     && git clone git://github.com/stnava/ANTs.git \
     && cd ANTs \
     && git checkout $ants_git_hash \
-    && mkdir build && cd build && cmake .. && make -j 2 \
+    && mkdir build && cd build && cmake -DUSE_VTK=ON .. && make -j 2 \
     && mkdir -p /opt/ants \
     && mv bin/* /opt/ants && mv ../Scripts/* /opt/ants \
     && rm -rf /tmp/*
