@@ -27,6 +27,12 @@ RUN if [ -z "$ants_version" ] || [ -z "$ants_git_hash" ]; then \
     && git clone git://github.com/stnava/ANTs.git \
     && cd ANTs \
     && git checkout $ants_git_hash \
+    # Fix error in minor version in 2.2.0.
+    # See https://github.com/kaczmarj/ANTs-builds/issues/4
+    && if [ "$ants_version" = "2.2.0" ]; then \
+          echo "Changing ANTs minor version to 2 from 1 ..."; \
+          sed -i -e 's/_VERSION_MINOR 1/_VERSION MINOR 2/g' Version.cmake; \
+    fi \
     && mkdir build && cd build && cmake .. && make -j 2 \
     && mkdir -p /opt/ants \
     && mv bin/* /opt/ants && mv ../Scripts/* /opt/ants \
