@@ -19,7 +19,7 @@ RUN sed -i 's/enabled=1/enabled=0/' /etc/yum/pluginconf.d/fastestmirror.conf \
                          make \
                          zlib-devel \
     && yum clean packages \
-    && rm -rf /var/cache/yum/* && rm -rf /tmp \
+    && rm -rf /var/cache/yum/* && rm -rf /tmp/* \
     #--------------------
     # Install newer cmake
     #--------------------
