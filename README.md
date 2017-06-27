@@ -20,12 +20,12 @@ Compiled on CentOS 5.11 Docker image
 
 | version | download | build log | sha1 |
 | --- | --- | --- | --- |
-| 2.2.0 | [binaries](https://www.dropbox.com/s/2f4sui1z6lcgyek/ANTs-Linux-centos5_x86_64-v2.2.0-0740f91.tar.gz?dl=1) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.2.0-0740f91.log?raw=1) | ec9bd68f3d45e2d00b26021bd74600319613f4ba |
-| 2.1.0 | [binaries](https://www.dropbox.com/s/h8k4v6d1xrv0wbe/ANTs-Linux-centos5_x86_64-v2.1.0-78931aa.tar.gz?dl=1) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.1.0-78931aa.log?raw=1) | a01d4b9a9b9ec9dcaad2150c92325bbebe765af3 |
-| 2.0.3 | [binaries](https://www.dropbox.com/s/oe4v52lveyt1ry9/ANTs-Linux-centos5_x86_64-v2.0.3-c996539.tar.gz?dl=1) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.0.3-c996539.log?raw=1) | 9c5a464e9155a060ca7cc8ba7b177e1e6695cd1d |
+| 2.2.0 | [binaries](https://dl.dropbox.com/s/2f4sui1z6lcgyek/ANTs-Linux-centos5_x86_64-v2.2.0-0740f91.tar.gz) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.2.0-0740f91.log?raw=1) | b7437beb85640cbcaa67872322f0d56a68de342a |
+| 2.1.0 | [binaries](https://dl.dropbox.com/s/h8k4v6d1xrv0wbe/ANTs-Linux-centos5_x86_64-v2.1.0-78931aa.tar.gz) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.1.0-78931aa.log?raw=1) | a01d4b9a9b9ec9dcaad2150c92325bbebe765af3 |
+| 2.0.3 | [binaries](https://dl.dropbox.com/s/oe4v52lveyt1ry9/ANTs-Linux-centos5_x86_64-v2.0.3-c996539.tar.gz) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.0.3-c996539.log?raw=1) | 9c5a464e9155a060ca7cc8ba7b177e1e6695cd1d |
 | 2.0.2 | unavailable | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.0.2-7b83036.log?raw=1) | unavailable |
 | 2.0.1 | unavailable | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.0.1-dd23c39.log?raw=1) | unavailable |
-| 2.0.0 | [binaries](https://www.dropbox.com/s/kgqydc44cc2uigb/ANTs-Linux-centos5_x86_64-v2.0.0-7ae1107.tar.gz?dl=1) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.0.0-7ae1107.log?raw=1) | fde5513f2cfd71fb3129991ccde94f463a6cf25d |
+| 2.0.0 | [binaries](https://dl.dropbox.com/s/kgqydc44cc2uigb/ANTs-Linux-centos5_x86_64-v2.0.0-7ae1107.tar.gz) | [logs](build_logs/ANTs-Linux-centos5_x86_64-v2.0.0-7ae1107.log?raw=1) | fde5513f2cfd71fb3129991ccde94f463a6cf25d |
 
 
 
