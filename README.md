@@ -42,7 +42,7 @@ build_log_file="ANTs-Linux-centos5_x86_64-v${ants_version}-${ants_git_hash:0:7}.
 
 docker build -t kaczmarj/ants:$ants_version \
 --build-arg ants_version=$ants_version \
---build-arg ants_git_hash=$ants_git_hash - < Dockerfile.build \
+--build-arg ants_git_hash=$ants_git_hash - < Dockerfile \
 | tee ../build_logs/$build_log_file
 ```
 
@@ -50,7 +50,12 @@ docker build -t kaczmarj/ants:$ants_version \
 
 # Getting the binaries
 
-The binaries can be pulled out of the Docker image by attaching a directory on the local machine to `/opt/ants`. To get the binaries onto a local directory `/home/ants`, use the command `docker run --rm -v /home/ants:/opt/ants kaczmarj/ants:2.2.0`.
+The binaries can be pulled out of the Docker image by attaching a directory on the local machine to `/tmp/ants` and moving the contents of `/opt/ants` to `/tmp/ants`:
+
+```shell
+$> docker run --rm -v /path/to/local/ants:/tmp/ants kaczmarj/ants:2.2.0 mv /opt/ants /tmp/ants
+```
+
 
 The binaries can be compressed before extracting to the local machine:
 
