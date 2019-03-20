@@ -43,7 +43,7 @@ RUN if [ -z "$ants_version" ]; then \
     && git clone git://github.com/stnava/ANTs.git ants \
     && cd ants \
     && git fetch origin --tags \
-    && git checkout tags/$ants_version \
+    && git checkout $ants_version \
     && mkdir build \
     && cd build \
     && source /opt/rh/devtoolset-3/enable \
