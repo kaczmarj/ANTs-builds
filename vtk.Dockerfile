@@ -62,6 +62,9 @@ FROM centos:7.5.1804
 
 COPY --from=builder /opt/ants /opt/ants
 
+RUN yum install -y mesa-libGL libXt \
+    && yum clean all
+
 ENV ANTSPATH=/opt/ants/ \
     PATH=/opt/ants:$PATH
 
