@@ -1,8 +1,8 @@
-# Dynamic Dockerfile that builds ANTs from source.
+# Dynamic Dockerfile that builds ANTs from source with VTK support.
 #
 # Example:
 #
-#   docker build -t ants:2.2.0 --build-arg ants_version=2.2.0
+#   docker build -t ants:vtk --build-arg NPROC=8 --build-arg ants_version=master - < vtk.Dockerfile
 
 FROM centos:6@sha256:12f2e9aa55e245664e86bfdf4eb000ddc316b48d9aa63c3c98ba886416868e49 as builder
 
@@ -32,7 +32,7 @@ BUILDING CMAKE WITH $NPROC PROCESS(ES)\n\
     && cd .. \
     && rm -rf *
 
-ARG ants_version
+ARG ants_version="master"
 
 ENV ANTS_VERSION=$ants_version
 WORKDIR /src
@@ -47,10 +47,11 @@ RUN if [ -z "$ants_version" ]; then \
     && mkdir build \
     && cd build \
     && source /opt/rh/devtoolset-3/enable \
+    && yum install -y mesa-libGL-devel libXt-devel \
     && printf "\n\n++++++++++++++++++++++++++++++++\n\
 BUILDING ANTS WITH $NPROC PROCESS(ES)\n\
 ++++++++++++++++++++++++++++++++\n\n" \
-    && cmake .. \
+    && cmake -DUSE_SYSTEM_VTK=OFF -DUSE_VTK=ON .. \
     && make -j$NPROC \
     && mkdir -p /opt/ants \
     && mv bin/* /opt/ants && mv ../Scripts/* /opt/ants \
@@ -60,6 +61,9 @@ BUILDING ANTS WITH $NPROC PROCESS(ES)\n\
 FROM centos:7.5.1804
 
 COPY --from=builder /opt/ants /opt/ants
+
+RUN yum install -y mesa-libGL libXt \
+    && yum clean all
 
 ENV ANTSPATH=/opt/ants/ \
     PATH=/opt/ants:$PATH
