@@ -2,7 +2,7 @@
 #
 # Example:
 #
-#   docker build -t ants:2.2.0 --build-arg ants_version=2.2.0 - < vtk.Dockerfile
+#   docker build -t ants:vtk --build-arg NPROC=8 --build-arg ants_version=master - < vtk.Dockerfile
 
 FROM centos:6@sha256:12f2e9aa55e245664e86bfdf4eb000ddc316b48d9aa63c3c98ba886416868e49 as builder
 
@@ -32,7 +32,7 @@ BUILDING CMAKE WITH $NPROC PROCESS(ES)\n\
     && cd .. \
     && rm -rf *
 
-ARG ants_version
+ARG ants_version="master"
 
 ENV ANTS_VERSION=$ants_version
 WORKDIR /src
