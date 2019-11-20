@@ -50,19 +50,25 @@ RUN if [ -z "$ants_version" ]; then \
     && printf "\n\n++++++++++++++++++++++++++++++++\n\
 BUILDING ANTS WITH $NPROC PROCESS(ES)\n\
 ++++++++++++++++++++++++++++++++\n\n" \
-    && cmake .. \
+    && cmake -DCMAKE_INSTALL_PREFIX="/opt/ants" .. \
     && make -j$NPROC \
-    && mkdir -p /opt/ants \
-    && mv bin/* /opt/ants && mv ../Scripts/* /opt/ants \
-    && cd .. \
-    && rm -rf build
+    && if [ -d /src/ants/build/ANTS-build ]; then \
+            \
+            cd /src/ants/build/ANTS-build \
+            && make install; \
+       else \
+            \
+            mkdir -p /opt/ants \
+            && mv bin/* /opt/ants \
+            && mv ../Scripts/* /opt/ants; \
+       fi
 
 FROM centos:7.5.1804
 
 COPY --from=builder /opt/ants /opt/ants
 
 ENV ANTSPATH=/opt/ants/ \
-    PATH=/opt/ants:$PATH
+    PATH=/opt/ants:/opt/ants/bin:$PATH
 
 LABEL maintainer="Jakub Kaczmarzyk <jakubk@mit.edu>" \
       ants_version=$ants_version
