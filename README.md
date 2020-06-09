@@ -9,6 +9,7 @@ Because the installation procedure is the same for most versions of ANTs, a sing
 
 # Available binaries
 
+- [ants-Linux-centos6_x86_64-v2.3.4.tar.gz](https://dl.dropbox.com/s/gwf51ykkk5bifyj/ants-Linux-centos6_x86_64-v2.3.4.tar.gz)
 - [ants-Linux-centos6_x86_64-v2.3.2.tar.gz](https://dl.dropbox.com/s/hrm530kcqe3zo68/ants-Linux-centos6_x86_64-v2.3.2.tar.gz)
   - Actually from commit [3d416475b296321dfe5e6cf905e05f197f4afb52](https://github.com/ANTsX/ANTs/commit/3d416475b296321dfe5e6cf905e05f197f4afb52) (bugfix in `antsRegistration`).
 - [ants-Linux-centos6_x86_64-v2.3.1.tar.gz](https://dl.dropbox.com/s/1xfhydsf4t4qoxg/ants-Linux-centos6_x86_64-v2.3.1.tar.gz)
@@ -52,3 +53,16 @@ The binaries can be compressed before extracting to the local machine:
 docker run --rm -v /home/ants:/tmp/ants-tar kaczmarj/ants:2.2.0 \
 /bin/tar czvf /tmp/ants-tar/ants.tar.gz -C /opt ants
 ```
+
+# Known issues
+
+If you cannot run the centos:6 Docker image, the problem could be due to a Linux kernel setting. On a Debian 10 machine, I need to make the following changes before being able to run the centos:6 image (and build the Dockerfile in this project).
+
+```
+sudo vim /etc/default/grub
+# Add 'vsyscall=emulate' to `GRUB_CMDLINE_LINUX_DEFAULT` variable.
+sudo update-grub
+# Reboot
+```
+
+To undo the above changes, remove `vsyscall=emulate`, run `sudo update-grub`, and reboot.
