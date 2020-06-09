@@ -9,7 +9,7 @@ FROM centos:6@sha256:12f2e9aa55e245664e86bfdf4eb000ddc316b48d9aa63c3c98ba8864168
 ARG NPROC=1
 
 WORKDIR /tmp
-RUN curl -fsSLO https://raw.githubusercontent.com/cms-sw/cms-docker/master/slc6-vanilla/RPM-GPG-KEY-cern \
+RUN curl -fsSLO https://raw.githubusercontent.com/cms-sw/cms-docker/master/slc6/RPM-GPG-KEY-cern \
     && rpm --import RPM-GPG-KEY-cern \
     && curl -fsSL -o /etc/yum.repos.d/slc6-scl.repo http://linuxsoft.cern.ch/cern/scl/slc6-scl.repo \
     && yum install -y -q \
